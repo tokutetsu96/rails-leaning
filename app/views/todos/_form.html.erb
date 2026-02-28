@@ -1,0 +1,32 @@
+<%= form_with model: @todo do |f| %>
+
+	<% if @todo.errors.any? %>
+    <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+      <% @todo.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= f.label :title, "タイトル", class: "block font-bold mb-1" %>
+    <%= f.text_field :title, class: "border rounded w-full p-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :description, "説明", class: "block font-bold mb-1" %>
+    <%= f.text_area :description, rows: 6,class: "border rounded w-full p-2" %>
+  </div>
+
+  <div class="mb-4 flex items-center gap-2">
+    <%= f.check_box :completed %>
+    <%= f.label :completed, "完了済み" %>
+  </div>
+
+  <div class="flex gap-2 justify-between">
+    <%= f.submit "保存", class: "bg-blue-500 text-white px-4 rounded cursor-pointer" %>
+    <%= link_to "一覧へ戻る", todos_path, class: "text-blue-500 mt-4 inline-block" %>
+  </div>
+  
+
+<% end %>
